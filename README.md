@@ -21,32 +21,24 @@ Installation
 To set up the project on your local machine, follow these steps:
 
 1. Clone the repository
-bash
-Copy code
 git clone https://github.com/zubair-smd/Django-Inventory-mgt.git
 2. Set up the virtual environment
-bash
-Copy code
 cd Django-Inventory-mgt
 python3 -m venv venv
 source venv/bin/activate  # On Windows, use 'venv\Scripts\activate'
 3. Install dependencies
-bash
-Copy code
+
 pip install -r requirements.txt
 4. Set up the database
 Run the following commands to create the database tables:
 
-bash
-Copy code
+
 python manage.py migrate
 5. Create a superuser (for accessing the admin panel)
-bash
-Copy code
+
 python manage.py createsuperuser
 6. Run the development server
-bash
-Copy code
+
 python manage.py runserver
 Now you can access the application at http://127.0.0.1:8000/.
 
@@ -61,8 +53,7 @@ IAM: Configure AWS IAM roles for securing access to services.
 AWS Lambda Integration
 To send low-stock notifications, Lambda functions are triggered based on certain events, using the following Python code:
 
-python
-Copy code
+
 def notify_low_stock():
     low_stock_items = Product.objects.filter(quantity__lt=10)
     for item in low_stock_items:
