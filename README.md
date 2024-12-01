@@ -1,69 +1,15 @@
-Django Inventory Management System
+# Django Inventory Management System
+
 A cloud-based inventory management system developed with Django and AWS services. This project aims to automate inventory tracking, order management, and reporting to help small and medium-sized enterprises (SMEs) manage their operations efficiently. The system supports real-time stock updates, low-stock notifications, and provides detailed reports on sales, inventory, and order status.
 
-Features
-Real-time Inventory Management: Tracks stock levels and updates inventory in real-time.
-Low-Stock Notifications: Automated alerts when stock levels fall below a predefined threshold.
-Order Management: Manage orders with an intuitive interface. Easily view, update, and track order statuses.
-Reporting: Generate detailed reports on stock levels, sales, order statuses, and other metrics.
-User Authentication: Secure login and sign-up functionality with role-based access control.
-Technologies Used
-Django: Web framework for rapid development.
-AWS (Amazon Web Services): Hosting and cloud services.
-Amazon S3: Used for static file hosting (CSS, images).
-Amazon RDS: Relational database service for storing inventory and order data.
-AWS Lambda: Serverless functions for triggering low-stock alerts.
-AWS IAM: Identity and Access Management for user authentication.
-PostgreSQL: Database used for storing application data (orders, products, etc.).
-Bootstrap: For front-end UI components.
-Chart.js: For visualizing inventory and order data in charts.
-Installation
-To set up the project on your local machine, follow these steps:
+Features include real-time inventory management that tracks stock levels and updates inventory in real-time, low-stock notifications that provide automated alerts when stock levels fall below a predefined threshold, order management with an intuitive interface to easily view, update, and track order statuses, reporting to generate detailed reports on stock levels, sales, order statuses, and other metrics, and user authentication with secure login and sign-up functionality with role-based access control.
 
-1. Clone the repository
-git clone https://github.com/zubair-smd/Django-Inventory-mgt.git
-2. Set up the virtual environment
-cd Django-Inventory-mgt
-python3 -m venv venv
-source venv/bin/activate  # On Windows, use 'venv\Scripts\activate'
-3. Install dependencies
+The technology stack includes Django for web framework rapid development, AWS services for hosting and cloud infrastructure including Amazon EC2 for application deployment and hosting, Amazon S3 for static file hosting (CSS, images), Amazon RDS for storing inventory and order data, AWS Lambda for serverless functions triggering low-stock alerts, AWS CodeDeploy for automated deployment, and AWS CodePipeline for continuous delivery. The system also uses PostgreSQL for storing application data (orders, products, etc.), Bootstrap for front-end UI components, and Chart.js for visualizing inventory and order data in charts.
 
-pip install -r requirements.txt
-4. Set up the database
-Run the following commands to create the database tables:
+To install the project locally, clone the repository using git clone https://github.com/zubair-smd/Django-Inventory-mgt.git, set up a virtual environment by navigating to the project directory and running python3 -m venv venv followed by source venv/bin/activate (or venv\Scripts\activate on Windows). Install dependencies with pip install -r requirements.txt, set up the database by running python manage.py migrate, create a superuser using python manage.py createsuperuser, and start the development server with python manage.py runserver. The application will be accessible at http://127.0.0.1:8000/.
 
+For AWS configuration, set up Amazon EC2 for application hosting by launching an instance with appropriate configurations and security groups. Configure Amazon S3 for static file hosting, set up Amazon RDS for database hosting and update the settings accordingly. AWS Lambda functions handle low-stock notifications with a simple function that monitors inventory levels. AWS CodeDeploy and CodePipeline are implemented for automated deployment and continuous delivery, streamlining the development to production workflow.
 
-python manage.py migrate
-5. Create a superuser (for accessing the admin panel)
+The Lambda integration for low-stock notifications is implemented with a Python function that queries products with quantities below a threshold and generates alerts. The CI/CD pipeline uses AWS CodePipeline to automate the build and deployment process, pulling code from GitHub, running tests, and deploying to EC2 instances through CodeDeploy.
 
-python manage.py createsuperuser
-6. Run the development server
-
-python manage.py runserver
-Now you can access the application at http://127.0.0.1:8000/.
-
-AWS Configuration
-Setting up AWS services
-To set up the cloud infrastructure:
-
-Amazon S3: Configure Amazon S3 for static file hosting (CSS, images).
-Amazon RDS: Set up RDS for database hosting. Update the DATABASES setting in settings.py with your RDS instance details.
-AWS Lambda: Set up Lambda functions for low-stock alerts.
-IAM: Configure AWS IAM roles for securing access to services.
-AWS Lambda Integration
-To send low-stock notifications, Lambda functions are triggered based on certain events, using the following Python code:
-
-
-def notify_low_stock():
-    low_stock_items = Product.objects.filter(quantity__lt=10)
-    for item in low_stock_items:
-        print(f"Low stock alert for {item.name}!")
-Usage
-Once the application is running, you can access the following features:
-
-Sign Up / Log In: Create a new user or log in to the application.
-Dashboard: View a comprehensive dashboard with real-time inventory and order statistics.
-Products: Add, edit, or delete products. View product details including stock levels.
-Inventory: View detailed information about your current inventory.
-Orders: Track the status of orders, from pending to completed.
-Reports: Generate detailed reports on sales, inventory levels, and order statuses.
+Once running, users can access features including user authentication, a comprehensive dashboard showing real-time inventory and order statistics, product management for adding, editing, or deleting products, inventory tracking, order management from pending to completed status, and detailed reporting capabilities for sales, inventory levels, and order statuses.
